@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIION Chocolate Factory</title>
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <style>
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo_div">
+        
+            <img id="logo" src="/assets/img/logo.png" alt="Logo LEÃO Chocolate Factory">
+            <h1>LION Chocolate Factory</h1>
+        </div>
+        <div class="cart" aria-label="Carrinho de compras">
+            🛒 <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#about">Sobre</a>
+        <a href="#products">Produtos</a>
+        <a href="#process">Processo</a>
+        <a href="#sustainability">Sustentabilidade</a>
+        <a href="#testimonials">Depoimentos</a>
+        <a href="#contact">Avaliação</a>
+    </nav>
+
+    <div class="hero">
+        <h1>Descubra o sabor do verdadeiro chocolate artesanal</h1>
+    </div>
+
+    <section id="about" class="section">
+        <h2>Sobre Nós</h2>
+        <p>Fundada em 2006 por <strong>Maria Fernanda Bispo</strong>, a Fábrica de Chocolates LEÃO é referência nacional e internacional na produção de chocolates artesanais premium.</p>
+        <p>Com sede em Feira de Santana, nossa missão é levar aos consumidores uma experiência inesquecível através de produtos que unem tradição, qualidade e inovação.</p>
+        <p class="founder">"Nossa paixão pelo chocolate é o que move nossa arte todos os dias." - Maria Fernanda Bispo</p>
+    </section>
+
+    <section id="products" class="section">
+        <h2>Nossos Produtos</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="assets/img/cacau.jpg" alt="Chocolate Cacau Puro">
+                <h3>Chocolate Cacau Puro 70%</h3>
+                <p>Feito com cacau de origem premium, para um sabor intenso e autêntico.</p>
+                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+            </div>
+            <div class="product-card">
+                <img src="assets\img\zero açucar.jpg">
+                <h3>Chocolate Zero Açúcar</h3>
+                <p>Desfrute do sabor do chocolate sem abrir mão da saúde. Zero açúcar, 100% sabor.</p>
+                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+            </div>
+            <div class="product-card">
+                <img src="/assets/img/sem lactose.jpg" alt="Chocolate Sem Lactose">
+                <h3>Chocolate Sem Lactose</h3>
+                <p>Para quem busca o sabor do chocolate sem lactose, ideal para intolerantes.</p>
+                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+            </div>
+            <div class="product-card">
+                <img src="assets\img\com cafe.jpg" alt="Chocolate com Café">
+                <h3>Chocolate com Café</h3>
+                <p>Uma combinação irresistível de chocolate intenso com um toque de café gourmet.</p>
+                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section">
+        <h2>Nosso Processo</h2>
+        <p>Produzimos chocolate bean-to-bar, cuidando de cada etapa: desde a seleção do cacau até a finalização do produto.</p>
+    </section>
+
+    <section id="sustainability" class="section">
+        <h2>Sustentabilidade</h2>
+        <p>Priorizamos práticas sustentáveis e parcerias com pequenos produtores, promovendo o comércio justo e a preservação do meio ambiente.</p>
+    </section>
+
+    <section id="testimonials" class="section testimonials">
+        <h2>O que dizem nossos clientes</h2>
+        <div id="testimonial-list"></div>
+
+        <div class="comments">
+            <h3>Deixe seu comentário:</h3>
+            <textarea id="comment-text" placeholder="Escreva seu comentário aqui..."></textarea>
+            <button class="btn" onclick="submitComment()">Enviar Comentário</button>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Avaliação</h2>
+        <p>Deixe sua classificação sobre nossa fábrica de chocolates:</p>
+        <div class="rating-form">
+            <div class="stars" id="stars">
+                <span data-value="1">★</span>
+                <span data-value="2">★</span>
+                <span data-value="3">★</span>
+                <span data-value="4">★</span>
+                <span data-value="5">★</span>
+            </div>
+            <button class="btn" onclick="submitRating()">Enviar Avaliação</button>
+        </div>
+        <div id="ratings-display">
+            <h3>Avaliações recentes:</h3>
+            <ul id="ratings-list"></ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 LEÃO Chocolate Factory. Todos os direitos reservados.</p>
+        <p>Desenvolvido por LEÃO Digital Solutions</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+        let selectedRating = 0;
+
+        // Carrinho
+        function addToCart() {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        // Avaliações (com LocalStorage)
+        const stars = document.querySelectorAll('#stars span');
+        const ratingsList = document.getElementById('ratings-list');
+        const testimonialList = document.getElementById('testimonial-list');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.getAttribute('data-value'));
+                highlightStars(selectedRating);
+            });
+        });
+
+        function highlightStars(rating) {
+            stars.forEach(star => {
+                star.classList.remove('selected');
+                if (parseInt(star.getAttribute('data-value')) <= rating) {
+                    star.classList.add('selected');
+                }
+            });
+        }
+
+        function submitRating() {
+            if (selectedRating === 0) {
+                alert('Por favor, selecione uma quantidade de estrelas!');
+                return;
+            }
+
+            const ratings = JSON.parse(localStorage.getItem('ratings') || '[]');
+            ratings.push(selectedRating);
+            localStorage.setItem('ratings', JSON.stringify(ratings));
+
+            displayRatings();
+            selectedRating = 0;
+            highlightStars(selectedRating);
+        }
+
+        function displayRatings() {
+            ratingsList.innerHTML = '';
+            const ratings = JSON.parse(localStorage.getItem('ratings') || '[]');
+            ratings.forEach(rating => {
+                const li = document.createElement('li');
+                li.textContent = `Cliente avaliou com ${rating} estrelas.`;
+                ratingsList.appendChild(li);
+            });
+        }
+
+        function submitComment() {
+            const commentText = document.getElementById('comment-text').value.trim();
+            if (!commentText) {
+                alert('Por favor, escreva um comentário.');
+                return;
+            }
+
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            comments.push(commentText);
+            localStorage.setItem('comments', JSON.stringify(comments));
+
+            document.getElementById('comment-text').value = '';
+            displayComments();
+        }
+
+        function displayComments() {
+            testimonialList.innerHTML = '';
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'testimonial';
+                div.innerHTML = `<p>"${comment}"</p>`;
+                testimonialList.appendChild(div);
+            });
+        }
+
+        // Carregar dados ao iniciar
+        displayRatings();
+        displayComments();
+    </script>
+</body>
+
+</html>
