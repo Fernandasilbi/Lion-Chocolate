@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIION Chocolate Factory</title>
+    <title>LEÃO Chocolate Factory</title>
     <link href="./assets/css/style.css" rel="stylesheet">
     <style>
-    
+      
     </style>
 </head>
 
@@ -50,27 +50,35 @@
                 <img src="assets/img/cacau.jpg" alt="Chocolate Cacau Puro">
                 <h3>Chocolate Cacau Puro 70%</h3>
                 <p>Feito com cacau de origem premium, para um sabor intenso e autêntico.</p>
-                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+                <p class="price">Preço: R$ 21,99 (250g)</p>
+                <button class="btn" onclick="addToCart('Chocolate Cacau Puro 70%', 21.99)">Adicionar ao Carrinho</button>
             </div>
             <div class="product-card">
-                <img src="assets\img\zero açucar.jpg">
+                <img src="assets/img/zero açucar.jpg" alt="Chocolate Zero Açúcar">
                 <h3>Chocolate Zero Açúcar</h3>
                 <p>Desfrute do sabor do chocolate sem abrir mão da saúde. Zero açúcar, 100% sabor.</p>
-                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+                <p class="price">Preço: R$ 25,99 (250g)</p>
+                <button class="btn" onclick="addToCart('Chocolate Zero Açúcar', 25.99)">Adicionar ao Carrinho</button>
             </div>
             <div class="product-card">
                 <img src="/assets/img/sem lactose.jpg" alt="Chocolate Sem Lactose">
                 <h3>Chocolate Sem Lactose</h3>
                 <p>Para quem busca o sabor do chocolate sem lactose, ideal para intolerantes.</p>
-                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+                <p class="price">Preço: R$ 29,99 (250g)</p>
+                <button class="btn" onclick="addToCart('Chocolate Sem Lactose', 29.99)">Adicionar ao Carrinho</button>
             </div>
             <div class="product-card">
-                <img src="assets\img\com cafe.jpg" alt="Chocolate com Café">
+                <img src="assets/img/com cafe.jpg" alt="Chocolate com Café">
                 <h3>Chocolate com Café</h3>
                 <p>Uma combinação irresistível de chocolate intenso com um toque de café gourmet.</p>
-                <button class="btn" onclick="addToCart()">Adicionar ao Carrinho</button>
+                <p class="price">Preço: R$ 35,99 (300g)</p>
+                <button class="btn" onclick="addToCart('Chocolate com Café', 35.99)">Adicionar ao Carrinho</button>
             </div>
         </div>
+        <p class="warning">
+            Aviso: A retirada dos produtos será feita exclusivamente nas lojas físicas da nossa empresa.
+             Não realizamos envio para todo o Brasil. Temos lojas em diversos locais, como na Bahia & Rio de Janeiro.
+        </p>
     </section>
 
     <section id="process" class="section">
@@ -126,6 +134,10 @@
         function addToCart() {
             cartCount++;
             document.getElementById('cart-count').textContent = cartCount;
+            const cartInfo = document.createElement('p');
+            cartInfo.className = 'cart-info';
+            cartInfo.textContent = `${productName} - R$ ${price} adicionado ao carrinho para retirada na loja.`;
+            document.body.appendChild(cartInfo);
         }
 
         // Avaliações (com LocalStorage)
@@ -205,5 +217,4 @@
         displayComments();
     </script>
 </body>
-
-</html>
+</body>
