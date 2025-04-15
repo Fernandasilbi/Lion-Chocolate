@@ -1,11 +1,12 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
@@ -13,68 +14,90 @@ body {
 
 header {
     background-color: #8B0000;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+    color: #fff;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
 }
 
-header .logo_div img {
-    width: 100px;
-    margin-bottom: 10px;
-}
-
-header h1 {
-    font-size: 2rem;
-    margin-bottom: 0;
+header img {
+    height: 100px;
 }
 
 nav {
-    background-color: #333;
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 nav a {
-    color: white;
-    padding: 10px 15px;
+    color: #fff;
     text-decoration: none;
-    text-align: center;
+    padding: 15px 20px;
+    display: block;
+    font-weight: 500;
+    transition: background-color 0.3s;
 }
 
-nav a:hover {
-    background-color: #555;
+nav a:hover,
+nav a:focus {
+    background-color: #8B0000;
 }
 
-.section {
+.cart {
+    background-color: #fff;
+    color: #8B0000;
+    padding: 10px 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+section {
+    position: relative;
+    display: flex;
+    gap: 24px;
     padding: 20px;
     margin: 10px;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#about h2 {
+section h2 {
     font-size: 2rem;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
-#about p {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+section p {
+    font-size: 1rem;
+    margin-bottom: 32px;
+}
+
+
+
+section img{
+    height: 600px
 }
 
 .founder {
+    position: absolute;
+    bottom: 64px;
+    margin-bottom: 24px;
     font-style: italic;
     font-weight: bold;
     color: #333;
 }
 
 footer {
+    background-color: #8B0000;
+    color: #fff;
     text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+    padding: 20px;
 }
